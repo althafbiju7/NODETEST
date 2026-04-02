@@ -36,6 +36,12 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 ```
 
+### 🔑 Testing Credentials
+For testing the administrative features (like managing categories), use:
+- **Email**: `felix@gmail.com`
+- **Password**: `felix@123`
+
+
 ## ✨ Key Features
 
 - **Modern Split-Screen Auth**: A beautiful, branded login and signup experience with geometric background decorations.
