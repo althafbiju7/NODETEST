@@ -37,13 +37,17 @@ const Home = () => {
   const [catFormData, setCatFormData] = useState({ name: '' });
   const [subCatFormData, setSubCatFormData] = useState({ name: '', category: '' });
 
-  // Initial Data Load
+  // Initial Data Load on component mount
   useEffect(() => {
     fetchCategories();
     fetchAllSubCategories();
   }, []);
 
-  // UNIFIED FETCH EFFECT (Fixes search/filter lag)
+  /**
+   * UNIFIED FETCH EFFECT
+   * Listens for changes in the URL search params, sub-category selection, or current page.
+   * Also resets category filters if a global search is initiated.
+   */
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get('search') || '';
@@ -68,7 +72,10 @@ const Home = () => {
     performFetch();
   }, [location.search, filterSubCat, page]);
 
-  // Sidebar Subcategory filtering
+  /**
+   * SIDEBAR FILTER SYNC
+   * Filters the full list of sub-categories based on the currently selected parent category.
+   */
   useEffect(() => {
     if (filterCategory) {
       const filtered = subCategories.filter(s => s.category?._id === filterCategory || s.category === filterCategory);

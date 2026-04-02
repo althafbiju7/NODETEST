@@ -1,12 +1,22 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
+/**
+ * @desc    Helper to generate a JWT token for user authentication
+ * @param   {string} id - User MongoDB ID
+ * @returns {string} - Signed JWT
+ */
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET || 'fallback_secret', {
         expiresIn: '30d',
     });
 };
 
+/**
+ * @desc    Register a new user
+ * @route   POST /api/users/register
+ * @access  Public
+ */
 const registerUser = async (req, res) => {
     try {
         const { name, email, password, isAdmin } = req.body;
@@ -34,6 +44,11 @@ const registerUser = async (req, res) => {
     }
 };
 
+/**
+ * @desc    Authenticate user & get token
+ * @route   POST /api/users/login
+ * @access  Public
+ */
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
