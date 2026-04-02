@@ -173,6 +173,13 @@ a {
   min-height: calc(100vh - 100px);
 }
 
+.auth-main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .auth-wrapper {
   width: 100%;
   max-width: 1100px; /* Increased for split layout */
@@ -332,6 +339,12 @@ input, select, textarea {
   border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 0.95rem;
+}
+
+/* Hide browser-native password reveal/clear buttons */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none !important;
 }
 
 label {
